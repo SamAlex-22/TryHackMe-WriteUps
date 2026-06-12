@@ -1,3 +1,4 @@
+<img width="1400" height="875" alt="1_A60DpyLnESYStcLkBA-8aQ" src="https://github.com/user-attachments/assets/589af673-eeb4-4c77-8a23-b8eb6f90bb2c" />
 Interceptor — TryHackMe Write-up
 
 <img width="1400" height="299" alt="1_r7jnIqXT8WuWFKytXVi6KA" src="https://github.com/user-attachments/assets/56dff059-4495-418a-998a-240194a91b4a" />
@@ -15,17 +16,15 @@ The first step was performing an Nmap scan to identify available services.
 After the initial reconnaissance, I used directory enumeration to search for hidden files and directories that might reveal useful information.
 Run the dirsearch with extensions like php.bak ,sql ,bak etc..
 
-
+<img width="1400" height="875" alt="1_A60DpyLnESYStcLkBA-8aQ" src="https://github.com/user-attachments/assets/7760a4d5-dd4c-43b2-b7f9-5681d3050253" />
 
 Discovery of a Backup File
-
 During enumeration, I discovered:
-
 /login.php.bak
 
-Inspecting this backup file revealed valuable information, including an email address and a clue related to the password.
+<img width="1400" height="600" alt="1_y-evIR9MAWBVX4q7fYROXQ" src="https://github.com/user-attachments/assets/82e082c8-df80-43c3-aa3a-eee75c34d57c" />
 
-Insert Screenshot: Enumeration Result
+Inspecting this backup file revealed valuable information, including an email address and a clue related to the password.
 
 ⸻
 
@@ -33,11 +32,10 @@ Authentication
 
 Using the information gathered from the backup file, I attempted to identify the correct password.
 
-One observation that helped was that the current year played a role in the credential pattern.
+I bruteforced based on the hint ,But to save time
+Current year played a role in the credential pattern.
 
 After successfully authenticating, the application redirected me to a page requesting a six-digit OTP.
-
-Insert Screenshot: Login Page
 
 ⸻
 
@@ -47,11 +45,15 @@ My initial approach was to test whether the OTP mechanism could be brute-forced.
 
 While inspecting the requests in Burp Suite, I noticed additional parameters involved in the verification process. Modifying these parameters revealed a logic flaw that allowed the verification step to be bypassed.
 
-Insert Screenshot: Burp Request
+<img width="1400" height="505" alt="1_iJrpWtEoCCoKfnxWePaOTA" src="https://github.com/user-attachments/assets/6c3f717f-dc7b-4e53-925a-555ae91c042e" />
+
 
 After forwarding the modified request and reloading the page, I gained access to the application.
 
-Insert Screenshot: Successful Login
+<img width="1400" height="632" alt="1_NIiBUqZajkb1uhVScEJpyA" src="https://github.com/user-attachments/assets/4f855931-80fc-4be5-95e5-1d6f45d0838f" />
+
+[Edited panel .tiff](https://github.com/user-attachments/files/28865320/Edited.panel.tiff)
+
 
 ⸻
 
@@ -68,13 +70,18 @@ The resource retrieval functionality appeared particularly interesting, so I foc
 
 Internal Resource Fetcher
 
-The feature behaved similarly to a server-side resource retrieval mechanism.
+The feature behaved similarly to a server-side resource retrieval mechanism (using curl command).
 
 Several common input manipulation techniques were tested but did not produce the expected results.
 
 Further investigation revealed that the application processed user-supplied input in a way that led to command execution opportunities.
+I tried symbols like ;, && , | 
+But nothing worked ,then I heard about command substitution 
 
-Insert Screenshot: Internal Resource Fetcher
+A example for understanding is given below
+
+
+  <img width="1400" height="399" alt="1_HDX1BiI2FgDfXKZk06nTlA" src="https://github.com/user-attachments/assets/571f464e-ce90-4820-a28b-9b5e235ff4ab" />
 
 ⸻
 
@@ -82,7 +89,8 @@ Obtaining the Flag
 
 After identifying the vulnerability and successfully leveraging it, I was able to retrieve the flag and complete the room.
 
-Insert Screenshot: Flag Retrieval
+[Edited flag.tiff](https://github.com/user-attachments/files/28865506/Edited.flag.tiff)
+
 
 ⸻
 
@@ -109,5 +117,3 @@ TryHackMe Profile
 https://tryhackme.com/p/SamAlex
 
 ⸻
-
-This write-up is intended for educational purposes and focuses on methodology rather than providing complete challenge solutions.
