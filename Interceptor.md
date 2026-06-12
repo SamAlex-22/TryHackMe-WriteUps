@@ -1,4 +1,3 @@
-<img width="1400" height="875" alt="1_A60DpyLnESYStcLkBA-8aQ" src="https://github.com/user-attachments/assets/589af673-eeb4-4c77-8a23-b8eb6f90bb2c" />
 Interceptor — TryHackMe Write-up
 
 <img width="1400" height="299" alt="1_r7jnIqXT8WuWFKytXVi6KA" src="https://github.com/user-attachments/assets/56dff059-4495-418a-998a-240194a91b4a" />
